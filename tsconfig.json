@@ -1,0 +1,3 @@
+{
+  "extends": "@lvluu.github.io/config/tsconfig.base.json"
+}
