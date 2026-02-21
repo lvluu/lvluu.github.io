@@ -11,14 +11,6 @@ function BrutalistPortfolio() {
       className="min-h-screen bg-black text-white selection:bg-white selection:text-black"
       style={{ fontFamily: "'JetBrains Mono', monospace" }}
     >
-      <div
-        className="fixed inset-0 pointer-events-none opacity-[0.03] z-50 animate-pulse"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-          animationDuration: "8s",
-        }}
-      />
-
       <div className="relative z-10 max-w-[900px] mx-auto px-6 py-16 md:py-24">
         <header className="mb-20 border-b border-white/10 pb-16">
           <div
