@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>lvluu.github.io</title>
+    <script>
+      // Don't intercept project site paths - let GitHub Pages handle them
+      var defined_projects = ['/leet/'];
+      var path = window.location.pathname;
+      for (var i = 0; i < defined_projects.length; i++) {
+        if (path.startsWith(defined_projects[i])) {
+          // This is a real 404 for a project site - don't SPA-route it
+          document.title = '404 - Not Found';
+          document.body.innerHTML = '<h1>404 - Page Not Found</h1>';
+          throw new Error('stop');
+        }
+      }
+    </script>
     <script type="module" crossorigin src="/assets/index-BkqMOzUe.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-Nm-nGyR5.css">
   </head>
