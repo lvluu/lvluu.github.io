@@ -105,7 +105,36 @@ function SwissPortfolio() {
           </div>
         </section>
 
-        <footer className="border-t-2 border-[#1a1a1a] pt-6 flex justify-between items-center opacity-0 animate-[swissReveal_0.6s_ease-out_forwards]" style={{ animationDelay: "1.7s" }}>
+        <section className="mb-20">
+          <div className="flex items-center gap-4 mb-10 opacity-0 animate-[swissReveal_0.6s_ease-out_forwards]" style={{ animationDelay: "1.5s" }}>
+            <div className="w-8 h-0.5 bg-[#e60012] scale-x-0 animate-[swissExpand_0.5s_ease-out_forwards]" style={{ animationDelay: "1.6s" }} />
+            <h2 className="text-[11px] uppercase tracking-[0.3em] font-bold text-[#1a1a1a]/40">
+              Side Projects
+            </h2>
+          </div>
+          <div className="grid gap-0 border-t border-l border-[#1a1a1a]/10 md:grid-cols-3">
+            {portfolio.projects.map((p, i) => (
+              <a
+                key={p.name}
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group border-b border-r border-[#1a1a1a]/10 p-6 flex flex-col opacity-0 animate-[swissReveal_0.5s_ease-out_forwards] hover:bg-[#1a1a1a] hover:text-[#fafafa] transition-colors duration-200"
+                style={{ animationDelay: `${1.7 + i * 0.1}s` }}
+              >
+                <h3 className="text-lg font-black uppercase tracking-tight mb-2 group-hover:text-[#fafafa]">{p.name}</h3>
+                <p className="text-xs leading-relaxed text-[#1a1a1a]/60 group-hover:text-[#fafafa]/70 mb-4 flex-1">{p.description}</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {p.tech.map((t) => (
+                    <span key={t} className="text-[10px] font-medium px-2 py-0.5 bg-[#1a1a1a]/5 text-[#1a1a1a]/60 group-hover:bg-[#fafafa]/15 group-hover:text-[#fafafa]/80">{t}</span>
+                  ))}
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <footer className="border-t-2 border-[#1a1a1a] pt-6 flex justify-between items-center opacity-0 animate-[swissReveal_0.6s_ease-out_forwards]" style={{ animationDelay: "2.2s" }}>
           <p className="text-[10px] uppercase tracking-[0.2em] text-[#1a1a1a]/30 font-bold">
             &copy; {portfolio.year}
           </p>

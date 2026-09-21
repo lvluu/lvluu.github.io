@@ -110,7 +110,40 @@ function EditorialPortfolio() {
           </div>
         </section>
 
-        <footer className="border-t border-[#2a2a2a]/10 pt-8 text-center opacity-0 animate-[editorialFade_1s_ease-out_forwards]" style={{ animationDelay: "2.4s" }}>
+        <section className="mb-20">
+          <h2
+            className="text-xs tracking-[0.2em] uppercase text-[#2a2a2a]/40 mb-10 opacity-0 animate-[editorialFade_1s_ease-out_forwards]"
+            style={{ fontFamily: "'DM Mono', monospace", animationDelay: "2.2s" }}
+          >
+            Side Projects
+          </h2>
+          <div className="space-y-10">
+            {portfolio.projects.map((p, i) => (
+              <a
+                key={p.name}
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block border-t border-[#2a2a2a]/10 pt-5 group opacity-0 animate-[editorialFade_1s_ease-out_forwards]"
+                style={{ animationDelay: `${2.4 + i * 0.15}s` }}
+              >
+                <h3 className="text-2xl mb-2 group-hover:translate-x-1 transition-transform duration-300" style={{ fontFamily: "'Instrument Serif', serif" }}>
+                  {p.name}
+                </h3>
+                <p className="text-base italic text-[#2a2a2a]/70 mb-4 max-w-xl" style={{ fontFamily: "'Libre Baskerville', serif" }}>
+                  {p.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {p.tech.map((t) => (
+                    <span key={t} className="text-xs px-3 py-1 rounded-full border border-[#2a2a2a]/10 text-[#2a2a2a]/50" style={{ fontFamily: "'DM Mono', monospace" }}>{t}</span>
+                  ))}
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <footer className="border-t border-[#2a2a2a]/10 pt-8 text-center opacity-0 animate-[editorialFade_1s_ease-out_forwards]" style={{ animationDelay: "2.9s" }}>
           <p
             className="text-xs text-[#2a2a2a]/30"
             style={{ fontFamily: "'DM Mono', monospace" }}

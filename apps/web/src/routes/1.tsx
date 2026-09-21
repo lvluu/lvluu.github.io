@@ -96,7 +96,33 @@ function BrutalistPortfolio() {
           </div>
         </section>
 
-        <footer className="border-t border-white/10 pt-8 text-center opacity-0 animate-[fadeIn_0.6s_ease-out_forwards]" style={{ animationDelay: "2.5s" }}>
+        <section className="mb-20">
+          <div className="text-[10px] uppercase tracking-[0.5em] text-white/30 mb-10 opacity-0 animate-[fadeIn_0.6s_ease-out_forwards]" style={{ animationDelay: "2.2s" }}>
+            Side Projects
+          </div>
+          <div className="space-y-8">
+            {portfolio.projects.map((p, i) => (
+              <a
+                key={p.name}
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block border-l-2 border-white/20 pl-4 hover:border-white transition-all duration-200 opacity-0 animate-[fadeIn_0.6s_ease-out_forwards]"
+                style={{ animationDelay: `${2.4 + i * 0.15}s` }}
+              >
+                <div className="text-sm uppercase tracking-[0.2em] text-white/80 mb-2">{p.name}</div>
+                <p className="text-white/50 text-sm leading-6 mb-3 max-w-2xl normal-case tracking-normal">{p.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {p.tech.map((t) => (
+                    <span key={t} className="text-[10px] uppercase tracking-[0.1em] px-2 py-1 border border-white/15 text-white/40">{t}</span>
+                  ))}
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <footer className="border-t border-white/10 pt-8 text-center opacity-0 animate-[fadeIn_0.6s_ease-out_forwards]" style={{ animationDelay: "2.9s" }}>
           <p className="text-[10px] uppercase tracking-[0.3em] text-white/20">
             &copy; {portfolio.year} {portfolio.name}
           </p>

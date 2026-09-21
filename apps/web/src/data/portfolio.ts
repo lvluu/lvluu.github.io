@@ -28,6 +28,29 @@ export const portfolio = {
       items: ["Proxmox", "Networking", "Virtualization", "Monitoring"],
     },
   ],
+  projects: [
+    {
+      name: "PandaEnglish",
+      description:
+        "IELTS learning platform — practice tests, instant AI feedback, and progress tracking across Reading, Listening, Writing, and Speaking.",
+      tech: ["React", "TanStack Start", "Hono/tRPC", "Cloudflare Workers", "Gemini"],
+      url: "https://panda-english.space/",
+    },
+    {
+      name: "Smarter",
+      description:
+        "Anti-doomscroll knowledge-feed PWA — swipe short nuggets, keep the good ones into spaced repetition so they stick.",
+      tech: ["Vite", "React 19", "Hono", "Cloudflare Workers", "D1", "Gemini"],
+      url: "https://smarter.chickeninkitchen.workers.dev/",
+    },
+    {
+      name: "Primavista",
+      description:
+        "Sightreading-first piano practice app — import a score, read it with aids, get a daily plan. Local-first, no backend.",
+      tech: ["React", "Vite", "IndexedDB (Dexie)", "MusicXML"],
+      url: "https://primavista.chickeninkitchen.workers.dev/",
+    },
+  ],
   year: 2026,
 } as const;
 
