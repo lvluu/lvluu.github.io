@@ -9,12 +9,12 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
   head: () => ({
     meta: [
       {
-        title: "Luu Van Loi - Software Engineer",
+        title: "Luu Van Loi - Senior Full-Stack Engineer",
       },
       {
         name: "description",
         content:
-          "Software Engineer | Full-Stack Development | DevOps & Cloud Automation",
+          "Senior Full-Stack Engineer. Java / Spring Boot, React, Kubernetes, AI-assisted engineering. Da Nang, Vietnam.",
       },
     ],
     links: [

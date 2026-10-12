@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { portfolio } from "@/data/portfolio";
+import { AgentLog } from "@/components/agent-log";
+import { DaNangWeather } from "@/components/da-nang-weather";
 
 export const Route = createFileRoute("/")({
   component: SwissPortfolio,
@@ -63,7 +65,7 @@ function SwissPortfolio() {
             <dl className="mb-5 space-y-1.5 text-xs" style={{ fontFamily: mono, color: `${INK}80` }}>
               <div className="flex justify-between gap-4">
                 <dt style={{ color: `${INK}4d` }}>LOC</dt>
-                <dd>{portfolio.location}</dd>
+                <dd>{portfolio.location}<DaNangWeather /></dd>
               </div>
               <div className="flex justify-between gap-4">
                 <dt style={{ color: `${INK}4d` }}>MAIL</dt>
@@ -90,13 +92,34 @@ function SwissPortfolio() {
 
         {/* ABOUT */}
         <Section n="02" title="About">
-          <p className="max-w-[68ch] text-lg leading-[1.7] md:text-xl" style={{ color: `${INK}c2` }}>
-            {portfolio.about}
-          </p>
+          <div className="grid gap-10 md:grid-cols-[1fr_500px] md:items-start">
+            <p className="max-w-[60ch] text-lg leading-[1.7] md:text-xl" style={{ color: `${INK}c2` }}>
+              {portfolio.about}
+            </p>
+            <AgentLog lines={portfolio.agentLog} ink={INK} paper={PAPER} accent={RED} font={mono} />
+          </div>
+        </Section>
+
+        {/* WORK */}
+        <Section n="03" title="Recent Work">
+          <ol className="grid gap-px md:grid-cols-2" style={{ backgroundColor: `${INK}14` }}>
+            {portfolio.work.map((w, i) => (
+              <li
+                key={w}
+                className={`flex gap-4 p-6 text-[15px] leading-relaxed animate-[swFade_0.6s_both] ${i === portfolio.work.length - 1 && i % 2 === 0 ? "md:col-span-2" : ""}`}
+                style={{ backgroundColor: PAPER, color: `${INK}b3`, animationDelay: `${0.05 + i * 0.06}s` }}
+              >
+                <span className="text-[11px] font-medium tabular-nums" style={{ fontFamily: mono, color: RED }}>
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span>{w}</span>
+              </li>
+            ))}
+          </ol>
         </Section>
 
         {/* PROJECTS */}
-        <Section n="03" title="Side Projects">
+        <Section n="04" title="Side Projects">
           <div className="grid gap-px md:grid-cols-3" style={{ backgroundColor: `${INK}14` }}>
             {portfolio.projects.map((p, i) => (
               <a
@@ -111,7 +134,7 @@ function SwissPortfolio() {
               >
                 <div className="mb-4 flex items-baseline justify-between">
                   <span className="text-[11px] font-medium tabular-nums" style={{ fontFamily: mono, color: RED }}>
-                    0{i + 1}
+                    {String(i + 1).padStart(2, "0")}
                   </span>
                   <span aria-hidden className="text-sm opacity-0 transition-all duration-300 group-hover:opacity-100" style={{ color: PAPER }}>&rarr;</span>
                 </div>
@@ -139,7 +162,7 @@ function SwissPortfolio() {
         </Section>
 
         {/* STACK */}
-        <Section n="04" title="Tech Stack">
+        <Section n="05" title="Tech Stack">
           <div className="grid gap-x-12 gap-y-10 sm:grid-cols-2">
             {portfolio.techStack.map((cat) => (
               <div key={cat.category} className="animate-[swFade_0.6s_both]">
@@ -179,6 +202,7 @@ function SwissPortfolio() {
         @keyframes swRise { from { opacity: 0; transform: translateY(105%); } to { opacity: 1; transform: translateY(0); } }
         @keyframes swFade { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes swExpand { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+        @keyframes swBlink { 50% { opacity: 0; } }
         :focus-visible { outline: 2px solid ${RED}; outline-offset: 3px; }
         @media (prefers-reduced-motion: reduce) {
           *, *::before, *::after { animation-duration: 0.001ms !important; animation-delay: 0s !important; transform: none !important; opacity: 1 !important; }
