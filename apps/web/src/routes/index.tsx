@@ -100,26 +100,8 @@ function SwissPortfolio() {
           </div>
         </Section>
 
-        {/* WORK */}
-        <Section n="03" title="Recent Work">
-          <ol className="grid gap-px md:grid-cols-2" style={{ backgroundColor: `${INK}14` }}>
-            {portfolio.work.map((w, i) => (
-              <li
-                key={w}
-                className={`flex gap-4 p-6 text-[15px] leading-relaxed animate-[swFade_0.6s_both] ${i === portfolio.work.length - 1 && i % 2 === 0 ? "md:col-span-2" : ""}`}
-                style={{ backgroundColor: PAPER, color: `${INK}b3`, animationDelay: `${0.05 + i * 0.06}s` }}
-              >
-                <span className="text-[11px] font-medium tabular-nums" style={{ fontFamily: mono, color: RED }}>
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span>{w}</span>
-              </li>
-            ))}
-          </ol>
-        </Section>
-
         {/* PROJECTS */}
-        <Section n="04" title="Side Projects">
+        <Section n="03" title="Side Projects">
           <div className="grid gap-px md:grid-cols-3" style={{ backgroundColor: `${INK}14` }}>
             {portfolio.projects.map((p, i) => (
               <a
@@ -162,7 +144,7 @@ function SwissPortfolio() {
         </Section>
 
         {/* STACK */}
-        <Section n="05" title="Tech Stack">
+        <Section n="04" title="Tech Stack">
           <div className="grid gap-x-12 gap-y-10 sm:grid-cols-2">
             {portfolio.techStack.map((cat) => (
               <div key={cat.category} className="animate-[swFade_0.6s_both]">

@@ -11,14 +11,6 @@ export const portfolio = {
   ],
   about:
     "I like owning a feature all the way down: the data model, the Spring Boot service, the React screen, the Helm chart it ships in, and the CI check that stops it from breaking next month. Lately most of my thinking goes into AI-assisted engineering. Agents write plenty of code. What I care about is making them show it works, and making them stop and ask when they can't.",
-  work: [
-    "App Factory: a dashboard where a non-technical user picks a template and gets a repo, Jenkins pipeline and Kubernetes environments. New app setup went from several days to about 10 minutes.",
-    "Spring Boot + PostgreSQL backend: computed fields kept fresh through a transactional outbox, RBAC from a YAML role model, Infinispan-backed @Cacheable caches.",
-    "React with Redux Saga and TypeScript, Zod on every REST boundary, Vitest and Playwright for tests.",
-    "Performance: lazy routes to shrink the startup bundle, batched saga RPCs, no polling in hidden tabs, rspack persistent cache. Every perf PR carries before/after timings.",
-    "Delivery: Helmfile deployments to Kubernetes, Keycloak, Jenkins pipelines, a Python (uv) tooling workspace for linting, seeding and data migration.",
-    "The team's AI setup: spec-driven workflow, Claude Code agents in isolated git worktrees, conventions as CI lint rules, browser verification with screenshot evidence on every PR.",
-  ],
   agentLog: [
     { tag: "spec", text: "story picked up, scope locked to 6 files" },
     { tag: "agent#1", text: "git worktree add -b feat/story origin/main" },
