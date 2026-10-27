@@ -1,9 +1,10 @@
 export const portfolio = {
   name: "Luu Van Loi",
-  title: "Senior Full-Stack Engineer · Java / Spring Boot · React · Kubernetes · AI-assisted engineering. Open to remote roles.",
+  title: "Senior Full-Stack & DevOps Engineer · Java / Spring Boot · React · Kubernetes · AI-assisted engineering. Open to remote roles.",
   location: "Da Nang, Vietnam",
   email: "luuvanloi@duck.com",
   links: [
+    { label: "Resume", url: "https://github.com/lvluu/resume/blob/main/Loi_Van_Luu_CV.pdf" },
     { label: "GitHub", url: "https://github.com/lvluu" },
     { label: "LinkedIn", url: "https://www.linkedin.com/in/luuvanloi/" },
     { label: "Email", url: "mailto:luuvanloi@duck.com" },
@@ -11,6 +12,7 @@ export const portfolio = {
   about:
     "I like owning a feature all the way down: the data model, the Spring Boot service, the React screen, the Helm chart it ships in, and the CI check that stops it from breaking next month. Lately most of my thinking goes into AI-assisted engineering. Agents write plenty of code. What I care about is making them show it works, and making them stop and ask when they can't.",
   work: [
+    "App Factory: a dashboard where a non-technical user picks a template and gets a repo, Jenkins pipeline and Kubernetes environments. New app setup went from several days to about 10 minutes.",
     "Spring Boot + PostgreSQL backend: computed fields kept fresh through a transactional outbox, RBAC from a YAML role model, Infinispan-backed @Cacheable caches.",
     "React with Redux Saga and TypeScript, Zod on every REST boundary, Vitest and Playwright for tests.",
     "Performance: lazy routes to shrink the startup bundle, batched saga RPCs, no polling in hidden tabs, rspack persistent cache. Every perf PR carries before/after timings.",
@@ -83,6 +85,12 @@ export const portfolio = {
         "Horizontally scalable webhook delivery with per-tenant fair scheduling, retries, HMAC-SHA256 signing and a circuit breaker.",
       tech: ["Go", "PostgreSQL"],
       url: "https://github.com/lvluu/webhook-notifier",
+    },
+    {
+      name: "bitbucket-dc-mcp",
+      description: "MCP server that lets AI agents read, review and work on Bitbucket Data Center pull requests.",
+      tech: ["TypeScript", "MCP"],
+      url: "https://github.com/lvluu/bitbucket-dc-mcp",
     },
     {
       name: "git-ctx",
