@@ -4,7 +4,6 @@ export const portfolio = {
   location: "Da Nang, Vietnam",
   email: "luuvanloi@duck.com",
   links: [
-    { label: "Resume", url: "https://github.com/lvluu/resume/blob/main/Loi_Van_Luu_CV.pdf" },
     { label: "GitHub", url: "https://github.com/lvluu" },
     { label: "LinkedIn", url: "https://www.linkedin.com/in/luuvanloi/" },
     { label: "Email", url: "mailto:luuvanloi@duck.com" },
