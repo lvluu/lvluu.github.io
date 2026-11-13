@@ -1,0 +1,9 @@
+{
+  "pack": "graphite-sketch",
+  "model": "flux",
+  "why": "good fit (83.9/100): ground light; pack keeps its own palette",
+  "runnersUp": [
+    "halftone-press",
+    "pop-grain"
+  ]
+}
