@@ -5,196 +5,155 @@ import { AgentLog } from "@/components/agent-log";
 import { DaNangWeather } from "@/components/da-nang-weather";
 
 export const Route = createFileRoute("/")({
-  component: SwissPortfolio,
+  component: Portfolio,
 });
 
-const RED = "#5b6b4f"; // muted moss accent (graphite-sketch allows one muted accent)
+// Graphite Sketch, "paper white" palette (Palletism)
 const INK = "#2b2b2b";
-const PAPER = "#ffffff";
+const MUTED = "#6e6e6e";
+const BORDER = "#e3e2de";
+const SURFACE = "#f7f6f3";
 const mono = "'JetBrains Mono', ui-monospace, monospace";
-const sans = "'Newsreader', Georgia, serif";
-const expanded = "'Newsreader', Georgia, serif";
+const body = "'Literata', Georgia, serif";
+const display = "'Cormorant Garamond', Georgia, serif";
 
-function SwissPortfolio() {
+const label = "text-[11px] uppercase tracking-[0.3em]";
+
+function Portfolio() {
+  const [first, ...rest] = portfolio.name.split(" ");
   return (
-    <div
-      className="min-h-screen antialiased"
-      style={{ backgroundColor: PAPER, color: INK, fontFamily: sans }}
-    >
-      <div className="h-px w-full" style={{ backgroundColor: `${INK}33` }} />
-
-      <div className="mx-auto max-w-[1040px] px-6 py-14 md:px-10 md:py-24">
-        {/* HEADER */}
-        <header className="mb-24 grid gap-10 md:grid-cols-[1fr_300px] md:items-end">
-          <div>
-            <div
-              className="mb-6 flex items-center gap-3 text-[11px] font-medium uppercase tracking-[0.35em]"
-              style={{ fontFamily: mono, color: RED }}
-            >
-              <span>01</span>
-              <span className="inline-block h-px w-10 origin-left animate-[swExpand_0.6s_0.2s_cubic-bezier(0.16,1,0.3,1)_both]" style={{ backgroundColor: RED }} />
-              <span style={{ color: `${INK}66` }}>Portfolio &rsquo;{String(portfolio.year).slice(2)}</span>
-            </div>
-            <h1
-              className="text-[clamp(2.75rem,11vw,6rem)] font-medium leading-[0.95] tracking-[-0.02em]"
-              style={{ fontFamily: expanded, textWrap: "balance" }}
-            >
-              {portfolio.name.split(" ").map((word, i) => (
-                <span
-                  key={word}
-                  className="block overflow-hidden"
-                >
-                  <span
-                    className="block animate-[swRise_0.7s_cubic-bezier(0.16,1,0.3,1)_both]"
-                    style={{ animationDelay: `${0.15 + i * 0.09}s` }}
-                  >
-                    {word}
-                  </span>
-                </span>
-              ))}
-            </h1>
-          </div>
-
-          <div
-            className="animate-[swFade_0.7s_0.35s_both] border-t-2 pt-4"
-            style={{ borderColor: INK }}
-          >
-            <p className="mb-5 text-sm leading-relaxed" style={{ color: `${INK}b3` }}>
-              {portfolio.title}
+    <div className="min-h-screen antialiased" style={{ backgroundColor: "#fff", color: INK, fontFamily: body }}>
+      <div className="mx-auto max-w-[1080px] px-6 md:px-10">
+        {/* HERO */}
+        <header className="grid items-center gap-10 pb-20 pt-16 md:grid-cols-[1fr_1.1fr] md:pb-28 md:pt-24">
+          <div className="animate-[swFade_0.7s_both]">
+            <p className={`mb-6 ${label}`} style={{ color: MUTED }}>
+              Portfolio &rsquo;{String(portfolio.year).slice(2)} &middot; {portfolio.location}
+              <DaNangWeather />
             </p>
-            <dl className="mb-5 space-y-1.5 text-xs" style={{ fontFamily: mono, color: `${INK}80` }}>
-              <div className="flex justify-between gap-4">
-                <dt style={{ color: `${INK}4d` }}>LOC</dt>
-                <dd>{portfolio.location}<DaNangWeather /></dd>
-              </div>
-              <div className="flex justify-between gap-4">
-                <dt style={{ color: `${INK}4d` }}>MAIL</dt>
-                <dd className="truncate">{portfolio.email}</dd>
-              </div>
-            </dl>
-            <div className="flex flex-wrap gap-x-5 gap-y-2">
-              {portfolio.links.map((link) => (
+            <h1
+              className="text-[clamp(3.5rem,10vw,6.5rem)] font-medium leading-[0.95] tracking-[-0.02em]"
+              style={{ fontFamily: display }}
+            >
+              {first}
+              <br />
+              <em className="font-medium italic">{rest.join(" ")}</em>
+            </h1>
+            <p className="mt-6 max-w-[34ch] text-lg leading-relaxed" style={{ color: MUTED }}>
+              {portfolio.title.split(" · ")[0]}.
+            </p>
+            <p className="mt-2 max-w-[40ch] text-sm leading-relaxed italic" style={{ color: MUTED }}>
+              {portfolio.title.split(" · ").slice(1).join(" · ")}
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+              {portfolio.links.map((link, i) => (
                 <a
                   key={link.label}
                   href={link.url}
                   target={link.url.startsWith("http") ? "_blank" : undefined}
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-1 text-xs font-bold uppercase tracking-[0.15em] outline-none transition-colors duration-200 focus-visible:ring-2"
-                  style={{ color: RED }}
+                  className={
+                    i === 0
+                      ? "px-6 py-3 text-sm transition-opacity hover:opacity-80"
+                      : "border-b pb-0.5 text-sm transition-colors hover:border-current"
+                  }
+                  style={
+                    i === 0
+                      ? { backgroundColor: INK, color: "#fff" }
+                      : { borderColor: INK, color: INK }
+                  }
                 >
-                  <span className="transition-transform duration-200 group-hover:translate-x-0.5">{link.label}</span>
-                  <span aria-hidden className="transition-transform duration-200 group-hover:translate-x-1">&rarr;</span>
+                  {link.label}
                 </a>
               ))}
             </div>
           </div>
+          <img
+            src="/hero.jpg"
+            alt="Pencil drawing of two engineers and a small robot crossing a plank bridge over a gap"
+            width={1024}
+            height={576}
+            className="w-full animate-[swFade_0.9s_0.2s_both]"
+          />
         </header>
 
-        <img
-          src="/hero.jpg"
-          alt="Pencil drawing of two engineers and a small robot crossing a plank bridge over a gap"
-          width={1024}
-          height={576}
-          className="mb-24 w-full animate-[swFade_0.8s_0.3s_both]"
-          style={{ border: `1px solid ${INK}1f` }}
-        />
-
         {/* ABOUT */}
-        <Section n="02" title="About">
-          <div className="grid gap-10 md:grid-cols-[1fr_500px] md:items-start">
-            <p className="max-w-[60ch] text-lg leading-[1.7] md:text-xl" style={{ color: `${INK}c2` }}>
-              {portfolio.about}
-            </p>
-            <AgentLog lines={portfolio.agentLog} ink={INK} paper={PAPER} accent={RED} font={mono} />
+        <Section title="About">
+          <p
+            className="mx-auto max-w-[30ch] text-center text-[clamp(1.6rem,3.6vw,2.4rem)] leading-[1.3]"
+            style={{ fontFamily: display, fontWeight: 500 }}
+          >
+            {portfolio.about.split(". ").slice(0, 1).join("")}.
+          </p>
+          <p className="mx-auto mt-8 max-w-[58ch] text-center text-base leading-[1.8]" style={{ color: MUTED }}>
+            {portfolio.about.split(". ").slice(1).join(". ")}
+          </p>
+          <div className="mx-auto mt-12 max-w-[560px]">
+            <AgentLog lines={portfolio.agentLog} ink={SURFACE} paper={INK} accent={MUTED} font={mono} />
           </div>
         </Section>
 
         {/* PROJECTS */}
-        <Section n="03" title="Side Projects">
-          <div className="grid gap-px md:grid-cols-3" style={{ backgroundColor: `${INK}14` }}>
+        <Section title="Side Projects">
+          <ul className="border-t" style={{ borderColor: BORDER }}>
             {portfolio.projects.map((p, i) => (
-              <a
-                key={p.name}
-                href={p.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex flex-col p-7 outline-none transition-colors duration-300 animate-[swFade_0.6s_both] focus-visible:ring-2 focus-visible:ring-inset"
-                style={{ backgroundColor: PAPER, animationDelay: `${0.1 + i * 0.08}s` }}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = INK)}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = PAPER)}
-              >
-                <div className="mb-4 flex items-baseline justify-between">
-                  <span className="text-[11px] font-medium tabular-nums" style={{ fontFamily: mono, color: RED }}>
+              <li key={p.name} className="border-b" style={{ borderColor: BORDER }}>
+                <a
+                  href={p.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group grid gap-2 py-7 transition-colors hover:bg-[#f7f6f3] md:grid-cols-[3rem_1fr_1.4fr] md:gap-8 md:px-4"
+                >
+                  <span className="text-sm tabular-nums" style={{ color: MUTED }}>
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span aria-hidden className="text-sm opacity-0 transition-all duration-300 group-hover:opacity-100" style={{ color: PAPER }}>&rarr;</span>
-                </div>
-                <h3 className="mb-2.5 text-xl font-semibold tracking-tight transition-colors group-hover:text-[var(--pp)]" style={{ ["--pp" as string]: PAPER }}>
-                  {p.name}
-                </h3>
-                <p className="mb-5 flex-1 text-sm leading-relaxed transition-colors" style={{ color: `${INK}8c` }}>
-                  <span className="group-hover:hidden">{p.description}</span>
-                  <span className="hidden group-hover:inline" style={{ color: `${PAPER}b3` }}>{p.description}</span>
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {p.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="border px-2 py-0.5 text-[10px] font-medium tracking-wide transition-colors"
-                      style={{ fontFamily: mono, borderColor: `${INK}1f`, color: `${INK}80` }}
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </a>
+                  <h3
+                    className="text-[1.75rem] font-semibold leading-tight"
+                    style={{ fontFamily: display }}
+                  >
+                    {p.name}
+                    <span aria-hidden className="ml-2 inline-block opacity-0 transition-opacity group-hover:opacity-100">&rarr;</span>
+                  </h3>
+                  <div>
+                    <p className="text-sm leading-relaxed" style={{ color: MUTED }}>{p.description}</p>
+                    <p className="mt-3 text-xs" style={{ color: MUTED, fontFamily: mono }}>
+                      {p.tech.join(" · ")}
+                    </p>
+                  </div>
+                </a>
+              </li>
             ))}
-          </div>
+          </ul>
         </Section>
 
         {/* STACK */}
-        <Section n="04" title="Tech Stack">
-          <div className="grid gap-x-12 gap-y-10 sm:grid-cols-2">
+        <Section title="Tech Stack">
+          <dl className="mx-auto max-w-[760px]">
             {portfolio.techStack.map((cat) => (
-              <div key={cat.category} className="animate-[swFade_0.6s_both]">
-                <h3 className="mb-4 border-b pb-2 text-[11px] font-bold uppercase tracking-[0.2em]" style={{ borderColor: `${INK}1f`, color: RED }}>
-                  {cat.category}
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {cat.items.map((item) => (
-                    <span
-                      key={item}
-                      className="cursor-default px-3 py-1 text-sm font-medium transition-colors duration-200"
-                      style={{ backgroundColor: `${INK}0a`, color: `${INK}a6` }}
-                      onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = RED; e.currentTarget.style.color = PAPER; }}
-                      onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = `${INK}0a`; e.currentTarget.style.color = `${INK}a6`; }}
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
+              <div
+                key={cat.category}
+                className="grid gap-1 border-t py-5 md:grid-cols-[13rem_1fr] md:gap-8"
+                style={{ borderColor: BORDER }}
+              >
+                <dt className="text-lg font-semibold" style={{ fontFamily: display }}>{cat.category}</dt>
+                <dd className="text-sm leading-relaxed" style={{ color: MUTED }}>{cat.items.join(" · ")}</dd>
               </div>
             ))}
-          </div>
+          </dl>
         </Section>
 
-        {/* FOOTER */}
         <footer
-          className="mt-8 flex items-center justify-between border-t-2 pt-6 text-[11px] font-bold uppercase tracking-[0.2em]"
-          style={{ borderColor: INK, color: `${INK}4d`, fontFamily: mono }}
+          className={`flex items-center justify-between border-t py-8 ${label}`}
+          style={{ borderColor: BORDER, color: MUTED }}
         >
           <span>&copy; {portfolio.year}</span>
-          <span style={{ color: RED }}>&#9632;</span>
           <span>{portfolio.name}</span>
         </footer>
       </div>
 
       <style>{`
-        @keyframes swRise { from { opacity: 0; transform: translateY(105%); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes swFade { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes swExpand { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-        @keyframes swBlink { 50% { opacity: 0; } }
-        :focus-visible { outline: 2px solid ${RED}; outline-offset: 3px; }
+        @keyframes swFade { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+        :focus-visible { outline: 2px solid ${INK}; outline-offset: 3px; }
         @media (prefers-reduced-motion: reduce) {
           *, *::before, *::after { animation-duration: 0.001ms !important; animation-delay: 0s !important; transform: none !important; opacity: 1 !important; }
         }
@@ -203,13 +162,13 @@ function SwissPortfolio() {
   );
 }
 
-function Section({ n, title, children }: { n: string; title: string; children: ReactNode }) {
+function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <section className="mb-24">
-      <div className="mb-10 flex items-center gap-3 animate-[swFade_0.6s_both]">
-        <span className="text-[11px] font-medium tabular-nums" style={{ fontFamily: mono, color: RED }}>{n}</span>
-        <span className="inline-block h-px w-8" style={{ backgroundColor: RED }} />
-        <h2 className="text-[11px] font-bold uppercase tracking-[0.3em]" style={{ color: `${INK}66` }}>{title}</h2>
+    <section className="pb-24 md:pb-32">
+      <div className="mb-12 flex items-center justify-center gap-5">
+        <span className="h-px w-16" style={{ backgroundColor: BORDER }} />
+        <h2 className={label} style={{ color: MUTED }}>{title}</h2>
+        <span className="h-px w-16" style={{ backgroundColor: BORDER }} />
       </div>
       {children}
     </section>
