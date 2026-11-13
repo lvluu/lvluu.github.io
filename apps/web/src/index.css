@@ -126,3 +126,5 @@
     @apply font-sans;
   }
 }
+
+html, body { background-color: #1a1c2c; }

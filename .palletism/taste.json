@@ -1,9 +1,8 @@
 {
-  "pack": "graphite-sketch",
+  "pack": "pixel-arcade",
   "model": "flux",
-  "why": "good fit (83.9/100): ground light; pack keeps its own palette",
+  "why": "chosen by the owner",
   "runnersUp": [
-    "halftone-press",
-    "pop-grain"
+    "graphite-sketch"
   ]
 }
