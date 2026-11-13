@@ -8,21 +8,23 @@ export const Route = createFileRoute("/")({
   component: Portfolio,
 });
 
-// Graphite Sketch, "paper white" palette (Palletism)
-const INK = "#2b2b2b";
-const MUTED = "#6e6e6e";
-const BORDER = "#e3e2de";
-const SURFACE = "#f7f6f3";
+// Pixel Arcade, "midnight cabinet" palette (Palletism)
+const INK = "#fff1e8";
+const MUTED = "#a3a7c2";
+const BORDER = "#383c5c";
+const SURFACE = "#242740";
+const BG = "#1a1c2c";
+const RED = "#ff004d";
 const mono = "'JetBrains Mono', ui-monospace, monospace";
-const body = "'Literata', Georgia, serif";
-const display = "'Cormorant Garamond', Georgia, serif";
+const body = "'Geist', system-ui, sans-serif";
+const display = "'Pixelify Sans', ui-monospace, monospace";
 
 const label = "text-[11px] uppercase tracking-[0.3em]";
 
 function Portfolio() {
   const [first, ...rest] = portfolio.name.split(" ");
   return (
-    <div className="min-h-screen antialiased" style={{ backgroundColor: "#fff", color: INK, fontFamily: body }}>
+    <div className="min-h-screen antialiased" style={{ backgroundColor: BG, color: INK, fontFamily: body }}>
       <div className="mx-auto max-w-[1080px] px-6 md:px-10">
         {/* HERO */}
         <header className="grid items-center gap-10 pb-20 pt-16 md:grid-cols-[1fr_1.1fr] md:pb-28 md:pt-24">
@@ -32,17 +34,17 @@ function Portfolio() {
               <DaNangWeather />
             </p>
             <h1
-              className="text-[clamp(3.5rem,10vw,6.5rem)] font-medium leading-[0.95] tracking-[-0.02em]"
+              className="text-[clamp(3.5rem,10vw,6.5rem)] font-semibold leading-[0.95] tracking-[-0.01em]"
               style={{ fontFamily: display }}
             >
               {first}
               <br />
-              <em className="font-medium italic">{rest.join(" ")}</em>
+              <span style={{ color: RED }}>{rest.join(" ")}</span>
             </h1>
             <p className="mt-6 max-w-[34ch] text-lg leading-relaxed" style={{ color: MUTED }}>
               {portfolio.title.split(" · ")[0]}.
             </p>
-            <p className="mt-2 max-w-[40ch] text-sm leading-relaxed italic" style={{ color: MUTED }}>
+            <p className="mt-2 max-w-[40ch] text-sm leading-relaxed" style={{ color: MUTED }}>
               {portfolio.title.split(" · ").slice(1).join(" · ")}
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
@@ -59,8 +61,8 @@ function Portfolio() {
                   }
                   style={
                     i === 0
-                      ? { backgroundColor: INK, color: "#fff" }
-                      : { borderColor: INK, color: INK }
+                      ? { backgroundColor: RED, color: "#0d0e16" }
+                      : { borderColor: RED, color: INK }
                   }
                 >
                   {link.label}
@@ -69,11 +71,12 @@ function Portfolio() {
             </div>
           </div>
           <img
-            src="/hero.jpg"
-            alt="Pencil drawing of two engineers and a small robot crossing a plank bridge over a gap"
-            width={1024}
-            height={576}
+            src="/hero.png"
+            alt="Pixel art of an engineer and a small robot joining two floating islands with a plank bridge"
+            width={512}
+            height={288}
             className="w-full animate-[swFade_0.9s_0.2s_both]"
+            style={{ imageRendering: "pixelated" }}
           />
         </header>
 
@@ -89,7 +92,7 @@ function Portfolio() {
             {portfolio.about.split(". ").slice(1).join(". ")}
           </p>
           <div className="mx-auto mt-12 max-w-[560px]">
-            <AgentLog lines={portfolio.agentLog} ink={SURFACE} paper={INK} accent={MUTED} font={mono} />
+            <AgentLog lines={portfolio.agentLog} ink={SURFACE} paper={INK} accent={RED} font={mono} />
           </div>
         </Section>
 
@@ -102,7 +105,7 @@ function Portfolio() {
                   href={p.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group grid gap-2 py-7 transition-colors hover:bg-[#f7f6f3] md:grid-cols-[3rem_1fr_1.4fr] md:gap-8 md:px-4"
+                  className="group grid gap-2 py-7 transition-colors hover:bg-[#242740] md:grid-cols-[3rem_1fr_1.4fr] md:gap-8 md:px-4"
                 >
                   <span className="text-sm tabular-nums" style={{ color: MUTED }}>
                     {String(i + 1).padStart(2, "0")}
@@ -144,7 +147,7 @@ function Portfolio() {
 
         <footer
           className={`flex items-center justify-between border-t py-8 ${label}`}
-          style={{ borderColor: BORDER, color: MUTED }}
+          style={{ borderColor: BORDER, color: MUTED, fontFamily: display }}
         >
           <span>&copy; {portfolio.year}</span>
           <span>{portfolio.name}</span>
@@ -153,7 +156,7 @@ function Portfolio() {
 
       <style>{`
         @keyframes swFade { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
-        :focus-visible { outline: 2px solid ${INK}; outline-offset: 3px; }
+        :focus-visible { outline: 2px solid ${RED}; outline-offset: 3px; }
         @media (prefers-reduced-motion: reduce) {
           *, *::before, *::after { animation-duration: 0.001ms !important; animation-delay: 0s !important; transform: none !important; opacity: 1 !important; }
         }
@@ -167,7 +170,7 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
     <section className="pb-24 md:pb-32">
       <div className="mb-12 flex items-center justify-center gap-5">
         <span className="h-px w-16" style={{ backgroundColor: BORDER }} />
-        <h2 className={label} style={{ color: MUTED }}>{title}</h2>
+        <h2 className={label} style={{ color: MUTED, fontFamily: display }}>{title}</h2>
         <span className="h-px w-16" style={{ backgroundColor: BORDER }} />
       </div>
       {children}
