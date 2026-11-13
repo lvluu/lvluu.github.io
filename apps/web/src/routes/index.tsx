@@ -8,12 +8,12 @@ export const Route = createFileRoute("/")({
   component: SwissPortfolio,
 });
 
-const RED = "#e60012";
-const INK = "#141414";
-const PAPER = "#f6f5f2";
+const RED = "#5b6b4f"; // muted moss accent (graphite-sketch allows one muted accent)
+const INK = "#2b2b2b";
+const PAPER = "#ffffff";
 const mono = "'JetBrains Mono', ui-monospace, monospace";
-const sans = "'Archivo', system-ui, sans-serif";
-const expanded = "'Archivo Expanded', 'Archivo', system-ui, sans-serif";
+const sans = "'Newsreader', Georgia, serif";
+const expanded = "'Newsreader', Georgia, serif";
 
 function SwissPortfolio() {
   return (
@@ -21,7 +21,7 @@ function SwissPortfolio() {
       className="min-h-screen antialiased"
       style={{ backgroundColor: PAPER, color: INK, fontFamily: sans }}
     >
-      <div className="h-1.5 w-full origin-left animate-[swExpand_0.7s_cubic-bezier(0.16,1,0.3,1)_forwards]" style={{ backgroundColor: RED }} />
+      <div className="h-px w-full" style={{ backgroundColor: `${INK}33` }} />
 
       <div className="mx-auto max-w-[1040px] px-6 py-14 md:px-10 md:py-24">
         {/* HEADER */}
@@ -36,7 +36,7 @@ function SwissPortfolio() {
               <span style={{ color: `${INK}66` }}>Portfolio &rsquo;{String(portfolio.year).slice(2)}</span>
             </div>
             <h1
-              className="text-[clamp(2.75rem,11vw,6rem)] font-black uppercase leading-[0.86] tracking-[-0.03em]"
+              className="text-[clamp(2.75rem,11vw,6rem)] font-medium leading-[0.95] tracking-[-0.02em]"
               style={{ fontFamily: expanded, textWrap: "balance" }}
             >
               {portfolio.name.split(" ").map((word, i) => (
@@ -90,6 +90,15 @@ function SwissPortfolio() {
           </div>
         </header>
 
+        <img
+          src="/hero.jpg"
+          alt="Pencil drawing of two engineers and a small robot crossing a plank bridge over a gap"
+          width={1024}
+          height={576}
+          className="mb-24 w-full animate-[swFade_0.8s_0.3s_both]"
+          style={{ border: `1px solid ${INK}1f` }}
+        />
+
         {/* ABOUT */}
         <Section n="02" title="About">
           <div className="grid gap-10 md:grid-cols-[1fr_500px] md:items-start">
@@ -120,7 +129,7 @@ function SwissPortfolio() {
                   </span>
                   <span aria-hidden className="text-sm opacity-0 transition-all duration-300 group-hover:opacity-100" style={{ color: PAPER }}>&rarr;</span>
                 </div>
-                <h3 className="mb-2.5 text-xl font-extrabold uppercase tracking-tight transition-colors group-hover:text-[var(--pp)]" style={{ ["--pp" as string]: PAPER }}>
+                <h3 className="mb-2.5 text-xl font-semibold tracking-tight transition-colors group-hover:text-[var(--pp)]" style={{ ["--pp" as string]: PAPER }}>
                   {p.name}
                 </h3>
                 <p className="mb-5 flex-1 text-sm leading-relaxed transition-colors" style={{ color: `${INK}8c` }}>
